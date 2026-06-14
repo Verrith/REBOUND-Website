@@ -1,4 +1,3 @@
-
 @font-face {
     font-family: 'EnchantedLand';
     src: url('../fonts/Enchanted Land.otf') format('opentype');
@@ -35,10 +34,7 @@ body {
 
 .bg-layer {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background-image: var(--bg-image);
     background-size: cover;
     background-position: center;
@@ -50,10 +46,7 @@ body {
 
 .overlay-layer {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(180deg, 
         rgba(0, 0, 0, 0.4) 0%, 
         rgba(10, 5, 0, 0.5) 50%, 
@@ -65,18 +58,14 @@ body {
 
 .background-elements {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     z-index: -1;
     pointer-events: none;
 }
 
 .glow-spot {
     position: absolute;
-    width: 200px;
-    height: 200px;
+    width: 200px; height: 200px;
     background: radial-gradient(circle, var(--glow-color) 0%, transparent 75%);
     border-radius: 50%;
     filter: blur(30px);
@@ -142,10 +131,7 @@ h1 {
 .about-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: radial-gradient(circle at 50% 50%, var(--glow-color) 0%, transparent 75%);
     pointer-events: none;
 }
@@ -187,10 +173,7 @@ h1 {
 .studio-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: radial-gradient(circle at 50% 50%, var(--glow-color) 0%, transparent 75%);
     pointer-events: none;
 }
@@ -218,6 +201,107 @@ h1 {
     font-size: 1rem;
 }
 
+.gallery-container {
+    position: relative;
+    max-width: 750px;
+    margin: 4rem auto 0;
+    border: 1px solid #1a1510;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+    gap: 0; 
+}
+
+.gallery-item {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px; 
+}
+
+.gallery-item img {
+    max-width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain;
+    border-radius: 2px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    border: 1px solid #2a2520;
+    display: block;
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #1a1510;
+    color: #d4c4a8;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, color 0.3s;
+    user-select: none;
+}
+
+.gallery-nav:hover {
+    background: rgba(255, 101, 45, 0.2);
+    color: #ff652d;
+}
+
+.gallery-nav:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.gallery-prev { left: -15px; }
+.gallery-next { right: -15px; }
+
+.gallery-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid #1a1510;
+}
+
+.gallery-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #1a1510;
+    cursor: pointer;
+    border: 1px solid #5a4a3a;
+    transition: all 0.3s;
+}
+
+.gallery-dot.active {
+    background: #ff652d;
+    border-color: #ff652d;
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba(255, 101, 45, 0.5);
+}
+
 @media (max-width: 768px) {
     h1 { font-size: 3.5rem; letter-spacing: 0.1em; }
     .container { padding: 2rem 1rem; }
@@ -225,4 +309,15 @@ h1 {
     .section-title { font-size: 2.2rem; letter-spacing: 0.05em; }
     .about-content, .studio-content { font-size: 1rem; line-height: 1.9; }
     .about-content p, .studio-content p { padding: 0 0.5rem; }
+    
+    .gallery-nav {
+        width: 30px;
+        height: 30px;
+        font-size: 1.2rem;
+        left: -5px;
+        right: -5px;
+    }
+    .gallery-item {
+        min-height: 250px;
+    }
 }

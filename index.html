@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- NOUVEAU : Calques séparés pour l'image et le calque sombre -->
     <div class="bg-layer"></div>
     <div class="overlay-layer"></div>
     
@@ -63,8 +62,35 @@
                     <b>RE:BOUND</b> will be constantly evolving as I make the game's demo ready for public release. This concept has huge potential, and I can't wait to see people reach the very high skill cap of the systems I've created.
                 </p>
 
-                <img src="images/image.png" alt="">
-                <img src="images/image2.png" alt="">
+                <div class="gallery-container">
+                    <button class="gallery-nav gallery-prev" aria-label="Image précédente">&#10094;</button>
+                    <div class="gallery-track">
+                        <div class="gallery-item">
+                            <img src="images/image.png" alt="Capture d'écran RE:BOUND 1">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/image2.png" alt="Capture d'écran RE:BOUND 2">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Capture d’écran 2026-06-14 121406.png" alt="Capture d'écran RE:BOUND 3">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Capture d’écran 2026-06-14 121358.png" alt="Capture d'écran RE:BOUND 4">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Capture d’écran 2026-06-14 121420.png" alt="Capture d'écran RE:BOUND 5">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Capture d’écran 2026-06-14 121431.png" alt="Capture d'écran RE:BOUND 6">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/Capture d’écran 2026-06-14 121439.png" alt="Capture d'écran RE:BOUND 7">
+                        </div>
+                    </div>
+                    <button class="gallery-nav gallery-next" aria-label="Image suivante">&#10095;</button>
+                    <div class="gallery-dots"></div>
+                </div>
+
             </div>
         </section>
 
@@ -72,5 +98,7 @@
             <p>&copy; 2026 RE:BOUND - Blackfeather Studio</p>
         </footer>
     </div>
+
+    <script src="js/gallery.js"></script>
 </body>
 </html>
