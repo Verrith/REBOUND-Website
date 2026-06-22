@@ -192,6 +192,287 @@ h1 {
     padding: 0 1rem;
 }
 
+.shield-forge {
+    margin: 4rem auto 0;
+    border: 1px solid rgba(255, 101, 45, 0.28);
+    background:
+        linear-gradient(135deg, rgba(255, 101, 45, 0.08), transparent 35%),
+        radial-gradient(circle at 28% 42%, rgba(255, 188, 81, 0.14), transparent 42%),
+        rgba(3, 3, 3, 0.76);
+    display: grid;
+    grid-template-columns: minmax(240px, 0.95fr) minmax(280px, 1.05fr);
+    min-height: 390px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 48px rgba(0, 0, 0, 0.72), 0 0 34px rgba(255, 101, 45, 0.08);
+}
+
+.shield-forge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 46px 46px;
+    mask-image: radial-gradient(circle at 35% 48%, black, transparent 70%);
+    pointer-events: none;
+}
+
+.shield-stage {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 390px;
+    isolation: isolate;
+}
+
+.shield-stage::after {
+    content: '';
+    position: absolute;
+    width: 62%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 101, 45, 0.22), transparent 68%);
+    filter: blur(18px);
+    z-index: -2;
+    animation: forge-breathe 4s ease-in-out infinite;
+}
+
+.shield-preview {
+    width: min(62%, 245px);
+    max-height: 300px;
+    object-fit: contain;
+    cursor: pointer;
+    filter: drop-shadow(0 28px 24px rgba(0, 0, 0, 0.72)) drop-shadow(0 0 24px rgba(255, 101, 45, 0.18));
+    transform: translateY(0) rotate(var(--shield-tilt, -2deg));
+    animation: shield-hover 3.6s ease-in-out infinite;
+    transition: transform 0.35s ease, filter 0.35s ease;
+    z-index: 2;
+}
+
+.shield-preview.is-bouncing {
+    animation: none;
+    transition: none;
+}
+
+.shield-forge.is-striking .shield-preview {
+    transform: translateY(-4px) scale(1.04) rotate(var(--shield-tilt, -2deg));
+    filter: drop-shadow(0 32px 28px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 34px rgba(255, 172, 69, 0.52));
+}
+
+.rebound-rings,
+.impact-spark {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.rebound-rings span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 118px;
+    aspect-ratio: 1;
+    border: 1px solid rgba(255, 188, 81, 0.0);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.45);
+    opacity: 0;
+}
+
+.shield-forge.is-striking .rebound-rings span {
+    animation: rebound-ring 0.78s ease-out forwards;
+}
+
+.shield-forge.is-striking .rebound-rings span:nth-child(2) {
+    animation-delay: 0.08s;
+}
+
+.shield-forge.is-striking .rebound-rings span:nth-child(3) {
+    animation-delay: 0.16s;
+}
+
+.impact-spark::before,
+.impact-spark::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 170px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 218, 126, 0.95), transparent);
+    transform: translate(-50%, -50%) rotate(22deg) scaleX(0);
+    opacity: 0;
+}
+
+.impact-spark::after {
+    transform: translate(-50%, -50%) rotate(-34deg) scaleX(0);
+}
+
+.shield-forge.is-striking .impact-spark::before,
+.shield-forge.is-striking .impact-spark::after {
+    animation: spark-flash 0.46s ease-out forwards;
+}
+
+.shield-panel {
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.shield-kicker {
+    margin-bottom: 0.5rem;
+    padding: 0;
+    color: #ffbc51;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.shield-name {
+    font-family: 'EnchantedLand', 'UnifrakturMaguntia', cursive;
+    color: #f0dfbd;
+    font-size: 2.65rem;
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 0 24px rgba(255, 101, 45, 0.26);
+}
+
+.shield-description {
+    margin-bottom: 1.6rem;
+    padding: 0;
+    text-align: left;
+    color: #b9a98c;
+    line-height: 1.7;
+}
+
+.shield-stats {
+    display: grid;
+    gap: 0.34rem;
+    margin-bottom: 1.7rem;
+    list-style: none;
+}
+
+.shield-stats li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(255, 238, 166, 0.08);
+    color: #fff8b8;
+    font-family: 'EnchantedLand', 'UnifrakturMaguntia', cursive;
+    font-size: 1.55rem;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+}
+
+.shield-stats li:last-child {
+    border-bottom: none;
+}
+
+.shield-stats strong {
+    font-size: 1.35rem;
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+.shield-stats .stat-good {
+    color: #39d667;
+    text-shadow: 0 0 10px rgba(57, 214, 103, 0.28);
+}
+
+.shield-stats .stat-bad {
+    color: #c51414;
+    text-shadow: 0 0 10px rgba(197, 20, 20, 0.25);
+}
+
+.shield-stats .stat-neutral {
+    color: #fff8b8;
+}
+
+.shield-selector {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(42px, 1fr));
+    gap: 0.65rem;
+}
+
+.shield-choice {
+    aspect-ratio: 1;
+    min-width: 0;
+    border: 1px solid #2a2118;
+    background: rgba(0, 0, 0, 0.42);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.shield-choice img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.64));
+}
+
+.shield-choice:hover,
+.shield-choice:focus-visible,
+.shield-choice.active {
+    border-color: #ff652d;
+    background: rgba(255, 101, 45, 0.14);
+    box-shadow: 0 0 18px rgba(255, 101, 45, 0.18);
+    transform: translateY(-2px);
+    outline: none;
+}
+
+@keyframes shield-hover {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -10px; }
+}
+
+@keyframes forge-breathe {
+    0%, 100% { opacity: 0.55; transform: scale(0.92); }
+    50% { opacity: 0.9; transform: scale(1.08); }
+}
+
+@keyframes rebound-ring {
+    0% {
+        border-color: rgba(255, 218, 126, 0.88);
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(0.45);
+    }
+    100% {
+        border-color: rgba(255, 101, 45, 0);
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2.9);
+    }
+}
+
+@keyframes spark-flash {
+    0% { opacity: 0; transform: translate(-50%, -50%) rotate(22deg) scaleX(0); }
+    35% { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, -50%) rotate(22deg) scaleX(1); }
+}
+
+.impact-spark::after {
+    animation-name: none;
+}
+
+.shield-forge.is-striking .impact-spark::after {
+    animation-name: spark-flash-alt;
+}
+
+@keyframes spark-flash-alt {
+    0% { opacity: 0; transform: translate(-50%, -50%) rotate(-34deg) scaleX(0); }
+    35% { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, -50%) rotate(-34deg) scaleX(1); }
+}
+
 .footer {
     text-align: center;
     padding: 4rem 2rem;
@@ -309,6 +590,37 @@ h1 {
     .section-title { font-size: 2.2rem; letter-spacing: 0.05em; }
     .about-content, .studio-content { font-size: 1rem; line-height: 1.9; }
     .about-content p, .studio-content p { padding: 0 0.5rem; }
+    .shield-forge {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+    .shield-stage {
+        min-height: 300px;
+    }
+    .shield-preview {
+        width: min(54%, 190px);
+    }
+    .shield-panel {
+        padding: 0 1.4rem 2rem;
+    }
+    .shield-kicker,
+    .shield-description {
+        text-align: center;
+    }
+    .shield-name {
+        font-size: 2.2rem;
+        text-align: center;
+    }
+    .shield-stats li {
+        font-size: 1.25rem;
+        gap: 0.65rem;
+    }
+    .shield-stats strong {
+        font-size: 1.15rem;
+    }
+    .shield-selector {
+        grid-template-columns: repeat(3, minmax(58px, 1fr));
+    }
     
     .gallery-nav {
         width: 30px;
