@@ -83,6 +83,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const shieldStats = document.querySelector('.shield-stats');
     let strikeTimer;
     let bounceAnimation;
+    let currentShieldIndex = 0;
+
+    function getShieldText(index) {
+        const shield = shieldData[index];
+
+        if (window.reboundTranslations) {
+            return window.reboundTranslations.getShieldText(index, shield);
+        }
+
+        return shield;
+    }
 
     function strikeForge() {
         if (!forge) return;
@@ -96,17 +107,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function selectShield(index) {
         const shield = shieldData[index];
+        const shieldText = getShieldText(index);
         if (!shield || !shieldPreview || !shieldName || !shieldDescription) return;
 
         shieldPreview.src = shield.image;
-        shieldPreview.alt = shield.alt;
+        shieldPreview.alt = shieldText.alt || shield.alt;
         shieldPreview.style.setProperty('--shield-tilt', shield.tilt);
-        shieldName.textContent = shield.name;
-        shieldDescription.textContent = shield.description;
+        shieldName.textContent = shieldText.name;
+        shieldDescription.textContent = shieldText.description;
+        currentShieldIndex = index;
 
         if (shieldStats) {
             shieldStats.innerHTML = '';
-            shield.stats.forEach(([label, value, tone]) => {
+            shieldText.stats.forEach(([label, value, tone]) => {
                 const item = document.createElement('li');
                 const labelElement = document.createElement('span');
                 const valueElement = document.createElement('strong');
@@ -177,6 +190,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (shieldPreview) {
         shieldPreview.addEventListener('click', bounceShield);
     }
+
+    window.addEventListener('rebound:languagechange', () => {
+        selectShield(currentShieldIndex);
+    });
 
     if (forge) {
         selectShield(0);

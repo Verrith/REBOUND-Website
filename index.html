@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,11 +19,12 @@
 
     <div class="container">
         <header>
+            <button class="language-toggle" type="button" data-language-toggle aria-label="Switch the site to French">FR</button>
             <h1 class="title_rebound">RE:BOUND</h1>
         </header>
 
         <section class="studio-section">
-            <h2 class="section-title">What is RE:BOUND?</h2>
+            <h2 class="section-title" data-i18n="studioTitle">What is RE:BOUND?</h2>
 
             <div class="gallery-container">
                     <button class="gallery-nav gallery-prev" aria-label="Image précédente">&#10094;</button>
@@ -56,7 +57,7 @@
                 <br><br>
                 
             <div class="studio-content">
-                <p>
+                <p data-i18n-html="studioIntro">
                     <b>RE:BOUND</b> started as a game jam project in early February 2026 and has since grown into a fully fledged project.
                     <br>
                     The core question we wanted to answer in the game jam was, what if you could parry everything? And then further; what if that was the only method you had to deal damage?
@@ -65,7 +66,7 @@
                     <br>
                     Since that point I've pushed the idea further and further, improving everything about the game to the highest standard I can reach.
                 </p>
-                <p>
+                <p data-i18n-html="studioGameplay">
                     <b>RE:BOUND</b> today is a first-person movement roguelite, you are a lamplighter, tasked with driving back the darkness from the wickfolk settlements within the vast interconnected network of the underdark. Recently, the darkness has been smothering settlement after settlement.
                     <br>
                     You and the other lamplighters have been directed to delve deep, try to find the heart of darkness, and destroy it.
@@ -74,7 +75,7 @@
                     <br>
                     But you need to be fast, the longer you spend on a level, the more the darkness spreads, and the more settlements are lost to the darkness.
                 </p>
-                <p>
+                <p data-i18n-html="studioFuture">
                     <b>RE:BOUND</b> will be constantly evolving as I make the game's demo ready for public release. This concept has huge potential, and I can't wait to see people reach the very high skill cap of the systems I've created.
                 </p>
                 
@@ -90,7 +91,7 @@
                     </div>
 
                     <div class="shield-panel">
-                        <p class="shield-kicker">Lamplighter Arsenal</p>
+                        <p class="shield-kicker" data-i18n="shieldKicker">Lamplighter Arsenal</p>
                         <h3 class="shield-name">Tower Shield</h3>
                         <p class="shield-description">
                             A heavy wall of iron for players who turn pressure into distance.
@@ -122,9 +123,9 @@
         </section>
         
         <section class="about-section">
-            <h2 class="section-title">About me</h2>
+            <h2 class="section-title" data-i18n="aboutTitle">About me</h2>
             <div class="about-content">
-                <p>
+                <p data-i18n-html="aboutText">
                     Hey! I'm Ben, a primarily solo developer based in Montréal, Québec and the founder of <b>Blackfeather Studios</b>.
                     <br>
                     my day job I work as an algorithms engineer for Procedural Worlds building tools which enable unity developers to procedurally generate anthropogenic structures at a large scale.
@@ -141,6 +142,7 @@
         </footer>
     </div>
 
+    <script src="js/translations.js"></script>
     <script src="js/gallery.js"></script>
 </body>
 </html>
